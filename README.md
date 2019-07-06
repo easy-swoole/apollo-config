@@ -2,6 +2,11 @@
 
 Easyswoole Apollo 配置中心
 
+## 安装
+```
+composer require easyswoole/apollo-config
+```
+
 ## 示例代码
 ```
 
