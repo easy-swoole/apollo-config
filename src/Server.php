@@ -10,8 +10,7 @@ class Server extends SplBean
 {
     protected $server = '';
     protected $appId = '';
-    protected $cluster = 'default';
-    protected $clientIp = '127.0.0.1';
+    protected $cluster = 'defaultCluster';
 
     /**
      * @return string
@@ -61,29 +60,13 @@ class Server extends SplBean
         $this->cluster = $cluster;
     }
 
-    /**
-     * @return string
-     */
-    public function getClientIp(): string
-    {
-        return $this->clientIp;
-    }
-
-    /**
-     * @param string $clientIp
-     */
-    public function setClientIp(string $clientIp): void
-    {
-        $this->clientIp = $clientIp;
-    }
-
     function __toString()
     {
-        return implode('/', [
-                $this->getServer(),
-                'configs',
-                $this->getAppId(),
-                $this->getCluster(),
-            ]) . '/';
+        return implode("/",[
+            $this->server,
+            'configs',
+            $this->appId,
+            $this->cluster
+        ]).'/';
     }
 }
