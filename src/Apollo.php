@@ -24,7 +24,7 @@ class Apollo extends TableConfig
     /*
      * 同步配置
      */
-    function sync($namespace = null)
+    function sync($namespace = null,$merge = true):?Configures
     {
         if($namespace !== null){
             $list = [$namespace];
@@ -34,11 +34,13 @@ class Apollo extends TableConfig
 
         foreach ($list as $namespace){
             $ret = $this->client->pull($namespace);
-            if($ret){
+            if($ret && $merge){
                 $this->setConf($namespace,$ret->getConfigurations());
                 $this->setConf("releaseKey_".$namespace,$ret->getReleaseKey());
             }
+            return $ret;
         }
+        return null;
     }
 
     function getReleaseKey($namespace)
